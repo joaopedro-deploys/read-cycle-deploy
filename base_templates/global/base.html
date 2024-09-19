@@ -1,0 +1,25 @@
+{% load static %}
+{% include "global/partials/head.html" %}
+<body>
+  {% include "global/partials/header.html" %}
+  <main id="main">
+    {% block content %} 
+
+    {% endblock content %}
+
+  </main>
+
+{% include "global/partials/footer.html" %}
+
+<script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- <script src="{% static 'assets/libs/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/libs/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/libs/swiper/swiper-bundle.min.js' %}"></script> -->
+
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+</body>
+
+</html>
