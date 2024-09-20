@@ -9,7 +9,7 @@ DEBUG = (os.environ.get('DEBUG')) != 0
 
 DEPLOY_HOST =  os.environ.get('WEB_HOSTNAME')
 
-ALLOWED_HOSTS = [DEPLOY_HOST, "127.0.0.1"]
+ALLOWED_HOSTS = [DEPLOY_HOST, "127.0.0.1", "read-cycle.azurewebsites.net"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", f'https://{DEPLOY_HOST}']
 
