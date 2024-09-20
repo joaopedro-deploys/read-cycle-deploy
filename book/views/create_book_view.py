@@ -10,9 +10,14 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.conf import settings
+
 
 class BookView(View):
     """ show the initial form, fetch data in api, merge above data and send to confirmation view """
+    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
     def get(self, request, *args, **kwargs):
         form = EntryBookDataForm()
         return render(

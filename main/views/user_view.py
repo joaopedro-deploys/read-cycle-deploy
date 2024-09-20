@@ -17,13 +17,16 @@ from ..forms import UserInfoForm
 from utils import Message
 from ..services import fetch_user_loc_data
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.conf import settings
 
 UserModel = get_user_model()    
 
 
 class LoginView(View):
     """ so far im use the django_auth default, but i was make a depency injection at top auth class, if i implement another type of auth """
+    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
     def get(self, request):
         form = LoginForm()
         return render(request, 'login.html', context={'form': form})

@@ -5,8 +5,8 @@ class Shipping(ShippingAbstract):
     def __init__(
             self, 
             shipping: ShippingAbstract,
-            _from: str,
-            _to: str,
+            _from: str = '',
+            _to: str = '',
             *args, **kwargs
             ) -> None:
         self.shipping = shipping(_from=_from,  _to=_to, *args, **kwargs)

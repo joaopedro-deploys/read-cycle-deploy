@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from ..models import TradeModel
 from ..zip_objects import zip_trade_payment_objects
+from ..zip_payment_shipping_instances import zip_payment_shipping_instances
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class RequestsTradesView(LoginRequiredMixin, ListView):
@@ -10,6 +11,7 @@ class RequestsTradesView(LoginRequiredMixin, ListView):
     context_object_name = 'trades'
 
     def get_queryset(self):
+        self.user = self.request.user
         return TradeModel.objects.user_trades_requests(
             user=self.request.user)
 
@@ -19,9 +21,9 @@ class RequestsTradesView(LoginRequiredMixin, ListView):
         qs = self.get_queryset()
         if not qs:
             return context
-        trades = zip_trade_payment_objects(
+        trades = zip_payment_shipping_instances(
             trades=qs,
-            user=self.request.user
+            user=self.user
         )
         context['trades'] = trades 
         return context 

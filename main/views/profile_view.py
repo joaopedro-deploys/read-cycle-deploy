@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from book.models import BookModel
 from trade.models import TradeModel
-from trade.zip_objects import zip_trade_payment_objects
+from trade.zip_payment_shipping_instances import zip_payment_shipping_instances
 from ..forms import UserInfoForm
 from django.db.models import Q, Count
 
@@ -18,9 +18,10 @@ UserModel = get_user_model()
 
 class UserProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
+        user = request.user
         books = BookModel.objects.users_books(user=self.request.user)
-        trades = TradeModel.objects.user_trades_requests(user=request.user) #fazer filtro por dono da troca ou n
-        trade_payment_zip = zip_trade_payment_objects(trades, self.request.user)
+        trades = TradeModel.objects.user_trades_requests(user=request.user) 
+        trade_payment_zip = zip_payment_shipping_instances(trades, user)
 
         user_stats = trades.aggregate(
                 total_trades=Count('id'),
