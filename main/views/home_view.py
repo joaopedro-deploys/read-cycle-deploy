@@ -11,12 +11,16 @@ from django.http.response import HttpResponse
 import json
 from django.db.models import F
 from django.db.models.functions import Abs
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.conf import settings
 
 class BookHomeView(View):
 
     def get_queryset(self, max: int = None):
         return BookModel.objects.all_books()[:max] #lazy
          
+    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
     def get(self, request, *args, **kwargs):
         qs = self.get_queryset(9)
         print('QS: ', qs)

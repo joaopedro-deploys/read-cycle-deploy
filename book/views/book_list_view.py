@@ -1,6 +1,7 @@
 from typing import Any
 from django.core.paginator import Paginator
 from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 from ..models import BookModel
 from django.core.paginator import Paginator
@@ -9,6 +10,9 @@ from ..filters.book_home_page_filter import BookHomeFilter
 import json
 from ..services import filter_book_qs_by_loc
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.conf import settings
 
 class BookListView(ListView):
     model = BookModel
@@ -18,6 +22,10 @@ class BookListView(ListView):
     def get_queryset(self):
         return BookModel.objects.books_available().select_related(
             'owner', 'category').order_by('-created_at')
+    
+    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().get(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context =  super().get_context_data(**kwargs)

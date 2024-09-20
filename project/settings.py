@@ -42,6 +42,7 @@ CACHES = {
     }
 }
 
+
 AUTHENTICATION_BACKENDS = [
     'main.backends.email_backend.EmailBackend',  
 ]
@@ -177,3 +178,5 @@ DEFAULT_ANY_BOOK_PRICE = 100
 DEFAULT_PX_WIDTH_BOOK_IMAGE = 128
 
 DEFAULT_PX_HEIGTH_BOOK_IMAGE = 193
+
+TIME_CACHE_LIST_VIEWS = 360  #in minutes
