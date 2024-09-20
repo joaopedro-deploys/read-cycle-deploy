@@ -28,6 +28,19 @@ INSTALLED_APPS = [
     'django_filters',
 
 ]
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379) #if ssl = true , port =6380
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"{REDIS_HOST}:{REDIS_PORT}/1",
+        "OPTIONS": {
+            "PASSWORD": REDIS_PASSWORD
+        }
+    }
+}
 
 AUTHENTICATION_BACKENDS = [
     'main.backends.email_backend.EmailBackend',  
