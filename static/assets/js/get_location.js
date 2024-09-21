@@ -1,5 +1,5 @@
 
-const get_location = () => {
+const get_location = async () => {
   return new Promise((success, error) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

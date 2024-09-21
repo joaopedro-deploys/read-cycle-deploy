@@ -9,10 +9,11 @@ DEBUG = (os.environ.get('DEBUG')) != 0
 
 DEPLOY_HOST =  os.environ.get('WEB_HOSTNAME')
 
-ALLOWED_HOSTS = [DEPLOY_HOST, "127.0.0.1", "read-cycle.azurewebsites.net"]
+ALLOWED_HOSTS = [DEPLOY_HOST, "127.0.0.1", "read-cycle.azurewebsites.net", DEPLOY_HOST]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", f'https://{DEPLOY_HOST}.net', "https://read-cycle.azurewebsites.net/"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", f'https://{DEPLOY_HOST}', "https://read-cycle.azurewebsites.net", f"http://{DEPLOY_HOST}"]
 
+CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:9000', f'https://{DEPLOY_HOST}', "https://read-cycle.azurewebsites.net",  f"http://{DEPLOY_HOST}"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
