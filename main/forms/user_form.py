@@ -1,5 +1,7 @@
+from typing import Any
 from django import forms
 from ..models import UserModel
+from ..validators.user_validator import CreateUserValidator
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -29,3 +31,11 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+    
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super().clean()
+        CreateUserValidator(cleaned_data)
+        return cleaned_data
+
+

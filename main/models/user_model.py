@@ -20,8 +20,7 @@ def get_user_avatar_random():
     avatars = [files for files in os.listdir(avatar_dir)]
     random_avatar = random.choice(avatars)
     random_with_path =  os.path.join(avatar_dir, random_avatar)
-    print('RANDOM: ', random_with_path)
-    return os.path.join(avatar_dir, random_avatar)  
+    return os.path.join(random_avatar)  
 
 
 
