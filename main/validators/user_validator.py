@@ -39,7 +39,7 @@ class CreateUserValidator:
 
     def clean_phone_number(self):
         pn = self.data.get('phone_number')
-        reg_string = r'^\(?\d{2}\)?[\s-]?\d{4,5}[-]?\d{4}$'
+        reg_string = r'^.{1,15}$'
         if not re.match(reg_string, pn):
             self.erros['phone_number'].append(f'Número de telefone {pn} inválido!')
 

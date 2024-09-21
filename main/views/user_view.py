@@ -75,6 +75,7 @@ class CreateUser(CreateView):
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
         invalid = super().form_invalid(form)
         print('form: ', form, form.errors)
+        messages.error(self.request, f'Erro ao criar usuário: {form.errors}' )
         return invalid
 
 class EditeUserView(View, ModelFormMixin, LoginRequiredMixin):
