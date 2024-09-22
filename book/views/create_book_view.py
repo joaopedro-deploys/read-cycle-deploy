@@ -17,7 +17,6 @@ from django.conf import settings
 
 class BookView(View):
     """ show the initial form, fetch data in api, merge above data and send to confirmation view """
-    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
     def get(self, request, *args, **kwargs):
         form = EntryBookDataForm()
         return render(
@@ -61,8 +60,8 @@ class ConfirmCreateBookView(LoginRequiredMixin, CreateView):
     template_name = 'book/create_book1.html'
     success_url = reverse_lazy('book:my-list-book-page')
     
-    #get the volume data from session, merge and update form.
     def form_valid(self, form): 
+        """     get the volume data from session, merge and update form. """
         volume_data = self.request.session.pop('volume_data', {}) 
         print('VOLUME DATA: ', volume_data)
         title = form.cleaned_data['title']
