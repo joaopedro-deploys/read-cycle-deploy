@@ -26,7 +26,7 @@ class CreateUserValidator:
 
     def clean_first_name(self):
         value = self.data.get('first_name')
-        reg_string = r'^[a-zA-Z0-9._]{3,20}$'
+        reg_string = r'^[a-zA-Z]{1,30}$'
         if not re.match(reg_string, value):
             self.erros['first_name'].append('O primeiro nome precisa atender aos requerimentos')
         return value

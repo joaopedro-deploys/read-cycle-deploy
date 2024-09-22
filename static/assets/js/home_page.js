@@ -3,7 +3,7 @@ import get_location from "./get_location.js"
 if (navigator.geolocation) {
     const data = await get_location() 
     const target = document.querySelector('#portfolio-container')
-    const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const csrftoken = document.querySelector('#csrf-token').getAttribute('content');
     fetch(
         '/',
         {

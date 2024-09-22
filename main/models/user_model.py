@@ -87,7 +87,7 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     @property
     def get_image_url(self):
         if self.image:
-            self.image.url.replace('/media', '')
+            return self.image.url.replace('/media', '')
         return None
     
     
