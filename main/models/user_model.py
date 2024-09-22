@@ -47,7 +47,7 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
         blank=True, 
         null=True, 
         #default=get_user_avatar_random, 
-        default=random(range(0,9)),
+        default=random.randrange(1,9),
         validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])    
 
     
