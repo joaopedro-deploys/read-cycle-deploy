@@ -46,7 +46,8 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     image = models.ImageField(
         blank=True, 
         null=True, 
-        default=get_user_avatar_random, 
+        #default=get_user_avatar_random, 
+        default=random(range(0,9)),
         validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])    
 
     
@@ -85,9 +86,9 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     
     @property
     def get_image_url(self):
-        if self.image:
-            return self.image.url.replace('/media/', '')
-
+        user_root = os.environ.get('USER_ROOT')
+        if user_root:
+            return  f'{user_root}/media/users/avatars/avataaars({self.user.image}).png'
         return None
     
     
