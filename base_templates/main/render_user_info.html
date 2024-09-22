@@ -3,7 +3,7 @@
         <div class="user-stats-info d-flex flex-column align-items-center">
                 <div class="profile-card">
                     <div class="profile-picture">
-                        <img src="{{ request.user.image.url }} " alt="Foto de Perfil">
+                        <img src="{{ request.user.get_image_url }} " alt="Foto de Perfil">
                     </div>
             </div>
             <input type="text" value="{{ request.user.email }}" class="form-control email-field mt-2" readonly>

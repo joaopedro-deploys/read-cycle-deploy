@@ -20,7 +20,7 @@ def get_user_avatar_random():
     avatars = [files for files in os.listdir(avatar_dir)]
     random_avatar = random.choice(avatars)
     random_with_path =  os.path.join(avatar_dir, random_avatar)
-    return os.path.join(random_avatar)  
+    return os.path.join(avatar_dir, random_avatar)  
 
 
 
@@ -83,6 +83,12 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
             print('pontos depois: ', self.points)
         return
     
+    @property
+    def get_image_url(self):
+        if self.image:
+            return self.image.url.replace('/media/', '')
+
+        return None
     
     
 
