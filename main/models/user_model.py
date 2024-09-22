@@ -24,6 +24,7 @@ def get_user_avatar_random():
 
 
 
+
 class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     """ rewrithen default user model from django, to add some new fields and data """ 
 
@@ -46,8 +47,7 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     image = models.ImageField(
         blank=True, 
         null=True, 
-        #default=get_user_avatar_random, 
-        default=random.randrange(1,9),
+        default=get_user_avatar_random, 
         validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])    
 
     
@@ -86,9 +86,8 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     
     @property
     def get_image_url(self):
-        user_root = os.environ.get('USER_ROOT')
-        if user_root:
-            return  f'{user_root}/media/users/avatars/avataaars({self.user.image}).png'
+        if self.image:
+            self.image.url.replace('/media', '')
         return None
     
     
