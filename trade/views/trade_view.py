@@ -56,6 +56,7 @@ class TradeView(LoginRequiredMixin, View):
             })
 
     def post(self, request, *args, **kwargs):
+        """ validate request data and create a trade in bd. After successful, init process payment method """
         book = self.get_book(kwargs.get('id', ''))
         form = self.get_trade_form(request.user, request.POST)
 
