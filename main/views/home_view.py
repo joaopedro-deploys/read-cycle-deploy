@@ -39,6 +39,7 @@ class BookHomeView(View):
             'latitude': lati,
             'longitude': long,
         }
+        qs = self.get_queryset()
 
         recomend_book = qs.annotate(
             lati_dif=Abs(F('owner__latitude') - lati),
