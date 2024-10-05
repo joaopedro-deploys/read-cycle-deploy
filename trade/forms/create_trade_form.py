@@ -22,6 +22,7 @@ class CreateTradeForm(forms.ModelForm):
         )
 
         self.fields['shipping_method'] = forms.ChoiceField(
+            label='Método de envio',
             required=True,
             choices=get_all_shipping_methods_choice()
         )

@@ -34,9 +34,12 @@ class BookHomeView(View):
         data = json.loads(request.body.decode('utf-8'))
         lati = data.get('latitude')
         long = data.get('longitude')
-        print('LLOCAL: ', lati, long)
 
-        qs = self.get_queryset()
+        request.session['user_loc'] = {
+            'latitude': lati,
+            'longitude': long,
+        }
+
         recomend_book = qs.annotate(
             lati_dif=Abs(F('owner__latitude') - lati),
             long_dif=Abs(F('owner__longitude') - long)

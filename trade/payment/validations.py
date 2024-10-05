@@ -24,5 +24,6 @@ class PaymentValidation:
     def validate_user_points(self):
         points = int(self.data.trade_value)
         user_points = self.user.points
+        print('TESTANDOOOO OS POINTS: ', user_points, points)
         if not user_points >= points:
             self.errors.append('Usuário não possui pontos suficientes')
