@@ -17,7 +17,7 @@ def send_email_new_trade(sender, instance, created, **kwargs) -> None:
 
             shipping = get_shipping_method(trade=instance)
             shipping_estimate_price = shipping.calculate_price_shipping()
-                
+
             book = instance.book
 
             task_send_email_new_trade.delay(
@@ -28,7 +28,8 @@ def send_email_new_trade(sender, instance, created, **kwargs) -> None:
                 payment_value=payment.trade_value,
                 estimate_price = shipping_estimate_price,
             )
-            
+        
+
         except ObjectDoesNotExist as error:
             print('erro ao pegar o objeto no signals: ', error)
 
