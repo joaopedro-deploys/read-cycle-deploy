@@ -360,7 +360,10 @@ border-radius: 4px;
         border-top-color: transparent;
     }
     .nav-list li{
-        width: 100%
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+
     }
   
 }
