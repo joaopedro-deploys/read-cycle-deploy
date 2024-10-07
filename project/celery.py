@@ -1,5 +1,5 @@
 import os, ssl
-from celery import Celery
+from app.project.celery import Celery
 from django.conf import settings
 from datetime import timedelta
 
@@ -22,6 +22,7 @@ app.conf.beat_schedule = {
 }
 
 app.autodiscover_tasks()
+
 
 
 

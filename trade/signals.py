@@ -27,7 +27,7 @@ def send_email_new_trade(sender, instance, created, **kwargs) -> None:
                 book_to_trade=instance.book.title,
                 payment_value=payment.trade_value,
                 estimate_price = shipping_estimate_price,
-            )
+            )   
         
 
         except ObjectDoesNotExist as error:
