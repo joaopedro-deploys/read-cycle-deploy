@@ -1,7 +1,4 @@
-#!/bin/bash
-# Aguardar alguns segundos para garantir que o App Service esteja inicializado
 
-python manage.py runserver --no-output --
-
-sleep 30
-nohup celery -A your_app_name worker --loglevel=info > celery.log 2>&1 &
+python manage.py runserver 0.0.0.0:8000 &
+sleep 10
+celery -A seu_app worker --loglevel=info --noinput
