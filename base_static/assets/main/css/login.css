@@ -78,6 +78,7 @@
 
 .formbold-form-title {
     margin-bottom: 30px;
+    padding: 20px;
 }
 .formbold-form-title h2 {
     font-weight: 600;
@@ -185,3 +186,16 @@ div .error{
   width: 100%;
   text-align: center;
 }
+@media (max-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+    .formbold-form-title {
+        margin-bottom: 30px;
+        width: 100vw;
+        padding: 20px;
+    }
+    .formbold-main-wrapper {
+        flex-wrap: wrap;
+    }
+  }

@@ -37,7 +37,7 @@ class UserModel(AbstractBaseUser,  BaseUserAbstract, PermissionsMixin):
     last_name = models.CharField(_("Sobrenome"), max_length=50) 
     street = models.CharField(_("Rua"), max_length=100)
     number = models.CharField(_("Número"), max_length=20) 
-    district = models.CharField(_("Bairro"), max_length=100, default='teste')
+    district = models.CharField(_("Bairro"), max_length=100)
     city = models.CharField(_("Cidade"), max_length=100)
     state = models.CharField(_("Estado"), max_length=100)
     zip_code = models.CharField(_("CEP"), max_length=10)
