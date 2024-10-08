@@ -3,7 +3,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'assets/book/css/all_book_list.css' %}">
 
-<div class="header">    
+<div class="header search-box-container">    
     <form   
         hx-get="{% url 'book:book-list-page' %}" 
         hx-target='.book-grid'

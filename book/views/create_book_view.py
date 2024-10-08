@@ -17,6 +17,8 @@ from django.conf import settings
 
 class BookView(View):
     """ show the initial form, fetch data in api, merge above data and send to confirmation view """
+
+    @method_decorator(cache_page((int(settings.TIME_CACHE_LIST_VIEWS) * 60))) 
     def get(self, request, *args, **kwargs):
         form = EntryBookDataForm()
         return render(

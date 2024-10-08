@@ -1,5 +1,5 @@
 import os, ssl
-from app.project.celery import Celery
+from celery import Celery
 from django.conf import settings
 from datetime import timedelta
 

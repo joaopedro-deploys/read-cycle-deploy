@@ -36,6 +36,18 @@ main{
     align-items: center;
 }
 
+.search-box-container{
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+#filters-form{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 .search-box {
     width: 50%;
     padding: 10px;
@@ -47,6 +59,9 @@ main{
 .list-container{
     display: flex;
     height: auto;
+}
+#filter-options-form{
+    margin-top: 50px;
 }
 
 .filters {
@@ -60,6 +75,7 @@ main{
 .nav{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 
@@ -316,6 +332,7 @@ border-radius: 4px;
         width: 100vw;
         height: auto;
         transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0s 0.5s;
+        margin-top: 50px;
     }
     .nav.active {
         opacity: 1;
@@ -363,7 +380,13 @@ border-radius: 4px;
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #filter-options-form{
+        margin-top: 0px;
     }
   
 }
