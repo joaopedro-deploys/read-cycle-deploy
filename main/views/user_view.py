@@ -68,15 +68,14 @@ class CreateUser(CreateView):
         user.latitude =  user_loc.get('lat')
         user.longitude = user_loc.get('lng')
         user.save()        
-        #display the task to send confirmation email
-
         return super().form_valid(form) 
 
     def form_invalid(self, form: BaseModelForm) -> HttpResponse:
         invalid = super().form_invalid(form)
-        print('form: ', form, form.errors)
-        messages.error(self.request, f'Erro ao criar usuário: {form.errors}' )
-        return invalid
+        json_error = form.errors.get_json_data()
+        error_message = json_error.get('__all__')[0].values()
+        messages.error(self.request, f'Erro ao criar usuário: {str(error_message)}')
+        return invalid                                                              
 
 class EditeUserView(View, ModelFormMixin, LoginRequiredMixin):
     """ view to edit with post and patch """
