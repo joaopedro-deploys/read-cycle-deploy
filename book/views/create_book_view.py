@@ -18,6 +18,7 @@ from django.conf import settings
 class BookView(View):
     """ show the initial form, fetch data in api, merge above data and send to confirmation view """
 
+
     def get(self, request, *args, **kwargs):
         form = EntryBookDataForm()
         return render(
@@ -36,7 +37,6 @@ class BookView(View):
             authors = form.cleaned_data['authors']
 
             api_data = fetch_volume_data(title=title, authors=[authors]) #fetch in google api
-            print('DATA_API: ', api_data)
             request.session['volume_data'] = api_data 
             book_form = CreateBookForm(data=api_data) 
 
