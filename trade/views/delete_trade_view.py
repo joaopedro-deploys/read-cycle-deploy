@@ -45,7 +45,7 @@ def delete_trade_view(request, pk):
         request,
         template,
         context={
-            'itens': new_list, 
+            'trades': new_list, 
             'partial': True
         }
     )
